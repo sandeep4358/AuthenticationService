@@ -1,0 +1,50 @@
+##chanes added for the 08122013
+server:
+  servlet:
+    context-path: /auth-service
+  port: 9999
+
+jwt:
+  secret: skaSoft
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:  true
+        exclude: threaddump
+
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:192.168.0.102}:${MYSQL_PORT:3307}/microservices
+
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#----------------below logging will activate the jpa transactional log
+
+eureka:
+  #  instance:
+  #    # Necessary for Docker as it doesn't have DNS entries
+  #    prefer-ip-address: true
+  #    # Necessary for Docker otherwise you will get 172.0.0.x IP
+  #    ip-address: 192.168.0.102
+  #"${HOST}"
+  client:
+    serviceUrl:
+      # Location of your eureka server
+      defaultZone: http://serviceregistory:8761/eureka
+
+
+logging:
+  charset:
+    file: /opt/tomcat/logs/auth.log
+  level:
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
