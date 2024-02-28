@@ -1,7 +1,7 @@
 ##chanes added for the 08122013
 server:
-  servlet:
-    context-path: /auth-service
+  #servlet:
+    #context-path: /auth-service
   port: 9999
 
 jwt:
