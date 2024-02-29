@@ -32,7 +32,7 @@ public class AuthController {
     final private HttpServletRequest request;
     @PostMapping
     @RequestMapping("/register")
-    public ResponseEntity regiterUser(@RequestBody AuthRequest request){
+    public ResponseEntity registerUser(@RequestBody AuthRequest request){
       log.info("saved user :: {}",request);
         userService.saveUser(request);
 

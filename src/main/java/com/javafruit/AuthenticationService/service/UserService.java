@@ -32,7 +32,10 @@ public class UserService {
                 .password(requestCred.getPassword())
                 .build();
 
-        String userRole = String.join(",", Arrays.asList(requestCred.getRoles()));
+
+
+        //String userRole = String.join(",", Arrays.asList(requestCred.getRoles()));
+        String userRole = requestCred.getRoles();
         UserService.log.info("Assigned user roles are {}", userRole);
         user.setRoles(userRole);
         user.setActive(true);

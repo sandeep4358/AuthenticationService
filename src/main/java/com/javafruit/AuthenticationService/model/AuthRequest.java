@@ -13,7 +13,7 @@ public class AuthRequest {
     private String userId;
     private String userName;
     private String password;
-    private  String[] roles;
+    private  String roles;
     private String mobileNumber;
     private String emailId;
 }
