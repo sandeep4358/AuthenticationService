@@ -6,9 +6,11 @@ import com.javafruit.AuthenticationService.repository.UserRepository;
 import com.javafruit.AuthenticationService.utility.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -47,11 +49,13 @@ public class UserService {
         User_Details save = userRepository.save(user);
         return true;
     }
-    public String generateToken(String username) {
-        UserService.log.info("in the generate token service.");
-        return jwtService.generateToken(username);
+    public String generateToken(Authentication authentication) {
+        return jwtService.generateToken(authentication);
     }
 
+    public String getRoles(String token){
+        return jwtService.getUserRoles(token);
+    }
     public void validateToken(String token,String username) {
         log.info("validateToken :: {}",token);
         jwtService.validateToken(token,username);

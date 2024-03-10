@@ -20,10 +20,10 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotExistException.class)
-    @ResponseStatus(value = HttpStatus.CONFLICT)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ResponseEntity<AuthResponseBody> handleUserNotExistException(final UserNotExistException exception,final HttpServletRequest request){
       log.error("************1*************************");
-        return getResponse(exception,request,HttpStatus.CONFLICT);
+        return getResponse(exception,request,HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(UserInvalidCredentialsException.class)
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
@@ -40,11 +40,11 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ResponseEntity<AuthResponseBody> globalExceptionHandler(final Exception exception,final HttpServletRequest request){
         log.error("************3*************************");
        // exception.printStackTrace();
-        return getResponse(exception,request,HttpStatus.INTERNAL_SERVER_ERROR);
+        return getResponse(exception,request,HttpStatus.NOT_FOUND);
     }
 
 
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
         SkaResponse error = new SkaResponse();
 
         if(exception.getMessage().contains("because \"authenticate\" is null"))
-            error.setMessage("INVALID_CREDENTIALS : Please enter the correct credential");
+            error.setMessage("Please enter the correct credential");
         else
             error.setMessage(exception.getMessage());
 
