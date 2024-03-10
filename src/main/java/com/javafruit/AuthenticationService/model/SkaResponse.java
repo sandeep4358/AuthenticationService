@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SkaResponse {
-    private String token ,message, requestedURI,dateAndTime;
-    private String roles;
+    private String user,token ,message, requestedURI,dateAndTime,roles;
 
 }

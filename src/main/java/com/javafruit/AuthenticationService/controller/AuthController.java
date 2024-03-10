@@ -76,6 +76,7 @@ public class AuthController {
             response.setRequestedURI(request.getRequestURI());
             response.setDateAndTime(CommonUtility.getCurrentDateTime());
             response.setRoles(userService.getRoles(tokens));
+            response.setUser(authRequest.getUserName());
             responseBody.setData(response);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);
         } else {
